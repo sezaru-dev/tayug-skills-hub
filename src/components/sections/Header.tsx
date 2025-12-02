@@ -14,8 +14,8 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="flex items-center space-x-4">
-          <Link href="/listings" className="hover:text-primary">
-            Listings
+          <Link href="/professionals" className="hover:text-primary">
+            Professionals
           </Link>
           <Link href="/about" className="hover:text-primary">
             About
