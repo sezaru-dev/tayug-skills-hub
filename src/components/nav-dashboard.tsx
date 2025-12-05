@@ -36,8 +36,8 @@ export function NavDashboard({
     <SidebarGroup>
       <SidebarGroupLabel>DASHBOARD</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem>
+        {items.map((item, index) => (
+          <SidebarMenuItem key={index}>
               <SidebarMenuButton tooltip={item.title}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
