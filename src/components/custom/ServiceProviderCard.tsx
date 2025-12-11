@@ -8,6 +8,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 type ServiceProviderCardProps = {
   id: string;
@@ -47,10 +48,12 @@ export const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({
 
       <CardHeader className="flex flex-col items-center space-y-2 p-0">
         {/* Avatar */}
-        <img
+        <Image
           src={avatarUrl}
           alt={name}
-          className="w-24 h-24 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
+          width={96}          
+          height={96}         
+          className="rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
         />
 
         {/* Name */}

@@ -1,4 +1,4 @@
-import { Star, ShieldCheck, Sparkles, Search, MessageCircle, Handshake, ChartBar } from "lucide-react";
+import { Star, ShieldCheck, Sparkles, Search, Handshake, ChartBar } from "lucide-react";
 
 // Steps for client journey
 export const clientSteps = [

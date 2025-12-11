@@ -8,7 +8,7 @@ type SearchFilterProps = {
   placeholder?: string
 }
 
-export default function SearchFilter({value, onChange, cName, placeholder}: SearchFilterProps) {
+export default function SearchFilter({value, cName, placeholder}: SearchFilterProps) {
   return (
     <Input
       placeholder={`${placeholder ?? "Search name or service..." }`}

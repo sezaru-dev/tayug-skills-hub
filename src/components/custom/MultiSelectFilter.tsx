@@ -18,7 +18,7 @@ import { Funnel } from "lucide-react"
 /* import { Table } from "@tanstack/react-table"
 import { capitalize } from "@/utils/capitalize" */
 
-type MultiSelectFilterProps<TData> = {
+type MultiSelectFilterProps = { /* <TData> */
   /* table: Table<TData> */
   columnKey: string
   label?: string
@@ -45,12 +45,12 @@ export const skillGroups = [
 
 
 
-export function MultiSelectFilter<TData>({
+export function MultiSelectFilter({/* <TData> */
   /* table, */
-  columnKey,
+  /* columnKey, */
   label = "Filter",
   options = skillGroups,
-}: MultiSelectFilterProps<TData>) {
+}: MultiSelectFilterProps) {/* <TData> */
   const [selected, setSelected] = useState<string[]>([])
 
   function toggleValue(value: string) {

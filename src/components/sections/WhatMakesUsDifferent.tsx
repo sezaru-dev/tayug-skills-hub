@@ -1,8 +1,18 @@
 import { features } from "@/app/constant-data";
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export default function WhatMakesUsDifferent() {
+
+  type FeatureCardProps = {
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+    title: string, 
+    desc: string, 
+    bgColor: string, 
+    textColor: string
+  }
   
-  const FeatureCard = ({ icon: Icon, title, desc, bgColor, textColor }: any) => (
+  const FeatureCard = ({ icon: Icon, title, desc, bgColor, textColor }: FeatureCardProps) => (
     <div className="p-6 rounded-xl bg-gray-50 shadow-sm">
       <div className={`mb-4 h-12 w-12 rounded-sm grid place-items-center ${bgColor}`}>
         <Icon className={`w-6 h-6 ${textColor}`} />

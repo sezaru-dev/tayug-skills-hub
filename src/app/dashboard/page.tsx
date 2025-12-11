@@ -16,7 +16,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { MessageCircle } from "lucide-react"
 
 export default function Page() {
  const providers = [
