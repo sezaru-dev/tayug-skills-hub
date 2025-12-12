@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,11 +17,14 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { signIn } from "next-auth/react"
+
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -55,7 +60,7 @@ export function LoginForm({
               </Field>
               <Field>
                 <Button type="submit">Login</Button>
-                <Button variant="outline" type="button">
+                <Button variant="outline" type="button" onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>
                   Login with Github
                 </Button>
                 <FieldDescription className="text-center">
