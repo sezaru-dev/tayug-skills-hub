@@ -13,7 +13,7 @@ import {
 } from "lucide-react"
 
 import { NavDiscover } from "@/components/nav-discover"
-import { NavUser } from "@/components/nav-user"
+/* import { NavUser } from "@/components/nav-user" */
 import {
   Sidebar,
   SidebarContent,
@@ -84,7 +84,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavDashboard items={data.navDashboard} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {/* <NavUser user={data.user} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

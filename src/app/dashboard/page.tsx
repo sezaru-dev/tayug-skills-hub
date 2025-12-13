@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { MultiSelectFilter } from "@/components/custom/MultiSelectFilter"
 import SearchFilter from "@/components/custom/SearchFilter"
-import { ServiceProviderCard } from "@/components/custom/ServiceProviderCard"
+/* import { ServiceProviderCard } from "@/components/custom/ServiceProviderCard" */
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/sidebar"
 
 export default function Page() {
- const providers = [
+/*  const providers = [
   {
     id: "1",
     name: "Jane Doe",
@@ -103,7 +103,7 @@ export default function Page() {
     skills: ["Web Development", "Full-stack Development", "UI/UX"],
     location: "Alaminos",
   },
-];
+]; */
 
   return (
     <SidebarProvider>
