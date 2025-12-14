@@ -12,29 +12,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id        String   @id @default(cuid())
   name      String?
-  email     String?  @unique
-  password  String?
+  email     String   @unique
+  image     String?
+  password  String? // null for Google-only users
   role      Role     @default(USER)
-  accounts  Account[]
-}
-
-model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  provider           String
-  providerAccountId  String
-  type               String
-  access_token       String?    @db.Text
-  refresh_token      String?    @db.Text
-  expires_at         Int?
-  
-  user User @relation(fields: [userId], references: [id])
-
-  @@unique([provider, providerAccountId])
+  createdAt DateTime @default(now())
 }
 
 enum Role {
