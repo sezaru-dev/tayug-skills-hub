@@ -1,22 +1,21 @@
-
+/* 
 import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
+
 import Credentials from "next-auth/providers/credentials"
 import { prisma } from "./lib/prisma";
 import { verifyPassword } from "./lib/auth-bcryptjs";
+import { Role } from "./types/roles";
+import { NextAuthOptions } from "next-auth";
+
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
-    Google,
     Credentials({
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        // Ensure credentials are present
         if (!credentials?.email || !credentials?.password) {
           throw new Error("CredentialsSignin");
         }
@@ -29,16 +28,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const isValid = await verifyPassword(credentials.password as string, user.password as string);
         if (!isValid) throw new Error("CredentialsSignin");
  
-        // return user object with their profile data
-        return { id: user.id, name: user.name, email: user.email };
+
+        return { id: user.id, name: user.name, email: user.email, role: user.role as unknown as Role };
         
       },
     }),
   ],
   session: {
-    strategy: "jwt", // Switch to JWT-based sessions
-    maxAge: 60 * 60, //1 hour
-    updateAge: 60 * 30 //30 mins
+    strategy: "jwt", 
+    maxAge: 60 * 60, 
+    updateAge: 60 * 30
   },
   pages: {
     signIn: "/auth/login",
@@ -46,10 +45,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async jwt({ token, user, account }) {
-      // On first login, add user data to token
+
       if (user) {
         token.id = user.id;
         token.name = user.name;
+        token.role = user.role;
         token.email = user.email;
         token.provider = account?.provider;
       }
@@ -57,16 +57,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     async session({ session, token }) {
-      // Expose extra token fields to session object
       if (token && session.user) {
-        if (typeof token.id === "string") {
-          session.user.id = token.id;
-        }
-        if (typeof token.provider === "string") {
-          session.user.provider = token.provider;
-        }
+        session.user.id = token.id as string;
+        session.user.role = token.role as Role;
+        session.user.email = token.email as string;
+        session.user.name = token.name;
       }
       return session;
     },
   }
-})
+}) */
