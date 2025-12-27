@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -21,14 +20,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
-import * as z from "zod"
+import z from "zod"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import ShowHidePasswordButton from "./custom/ShowHidePasswordButton"
 import { useState } from "react"
 
 export const formSchema = z.object({
-
   email: z.string().email({
     message: "Please enter a valid email address.",
   }),
@@ -51,23 +49,17 @@ export function LoginForm({
       },
     })
   
-    function onSubmit(data: z.infer<typeof formSchema>) {
-      /* toast("You submitted the following values:", {
-        description: (
-          <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
-            <code>{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-        position: "bottom-right",
-        classNames: {
-          content: "flex flex-col gap-2",
-        },
-        style: {
-          "--border-radius": "calc(var(--radius)  + 4px)",
-        } as React.CSSProperties,
-      }) */
-     console.log(data);
+   async function onSubmit(data: z.infer<typeof formSchema>) {
+           try {
+             await signIn("credentials", {
+               email: data.email,
+               password: data.password,
+               callbackUrl: '/dashboard'
+             })
      
+           } catch (err) {
+             console.error(err);
+           }
     }
   
   return (
@@ -80,7 +72,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form  id="sign-up-form" onSubmit={form.handleSubmit(onSubmit)}>
+          <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
               <Controller
                 name="email"
@@ -127,10 +119,10 @@ export function LoginForm({
                   )}
                 />
               <Field>
-                <Button type="submit" className="bg-blue-600 hover:bg-blue-700">Login</Button>
-                <Button variant="outline" type="button" onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>
+                <Button type="submit" className="bg-blue-600 hover:bg-blue-700" form="login-form">Login</Button>
+{/*                 <Button variant="outline" type="button" onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>
                   Continue with Google
-                </Button>
+                </Button> */}
               </Field>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Link href="/auth/signup">Sign up</Link>
