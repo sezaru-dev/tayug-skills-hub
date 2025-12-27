@@ -2,8 +2,25 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  // Define allowed routes
+  const allowedRoutes = [
+    "/",
+    "/professionals",
+    "/about",
+    "/contact",
+  ];
+
+  // Check if the pathname is allowed or matches /professionals/[id]
+  const shouldRender =
+    allowedRoutes.includes(pathname) || pathname.startsWith("/professionals/");
+
+  if (!shouldRender) return null;
+  
   return (
     <header className="bg-white border-b shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
