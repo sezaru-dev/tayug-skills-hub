@@ -4,7 +4,7 @@ import "./globals.css";
 import NextAuthProvider from "@/components/providers/next-auth-provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-/* import Header from "@/components/sections/Header"; */
+import Header from "@/components/sections/Header";
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -30,7 +30,7 @@ export default async function RootLayout({
       <body
         className={` ${figtree.className} antialiased`}
       >
-        {/* <Header/> */}
+        <Header/>
         <NextAuthProvider session={session}>
           {children}
         </NextAuthProvider>
