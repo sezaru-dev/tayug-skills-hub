@@ -2,11 +2,14 @@
 
 import * as React from "react"
 import {
+  FileCheck,
+  Layers,
   LayoutDashboard,
   List,
   ShieldAlert,
   UserRound,
   UserRoundCheck,
+  Users,
   UsersRound,
 } from "lucide-react"
 
@@ -18,8 +21,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { NavHeader } from "./nav-header"
-import { NavUser } from "./nav-user"
 import { NavDashboard } from "./nav-dashboard"
+import { NavUser } from "./nav-user"
 
 
 // This is sample data.
@@ -31,29 +34,50 @@ const data = {
   },
     navDashboard: [
     {
-      title: "Overview",
+      title: "Dashboard",
       url: "#",
       icon: LayoutDashboard,
     },
     {
-      title: "Approvals",
+      title: "Users",
       url: "#",
-      icon: UserRoundCheck,
+      icon: Users,
+      isActive: true,
+      items: [
+        {
+          title: "All Users",
+          url: "#",
+        },
+        {
+          title: "Users",
+          url: "#",
+        },
+        {
+          title: "Service Providers",
+          url: "#",
+        },
+      ],
     },
     {
-      title: "Service Providers",
+      title: "Skills",
       url: "#",
-      icon: UsersRound,
+      icon: Layers,
+      isActive: true,
+      items: [
+        {
+          title: "Categories",
+          url: "/admin/categories",
+        },
+        {
+          title: "Skills",
+          url: "/admin/skills",
+        },
+      ],
     },
     {
-      title: "Clients",
+      title: "Provider Applications",
       url: "#",
-      icon: UserRound,
-    },
-    {
-      title: "Categories",
-      url: "#",
-      icon: List,
+      icon: FileCheck,
     },
     {
       title: "Reports",
@@ -73,7 +97,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavDashboard items={data.navDashboard} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
