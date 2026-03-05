@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Header from "@/components/sections/Header";
 import { Toaster } from "@/components/ui/sonner";
+import { QueryProvider } from "./providers/query-provider";
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -33,9 +34,11 @@ export default async function RootLayout({
       >
         <Header/>
         <NextAuthProvider session={session}>
-          {children}
+          <QueryProvider>
+            {children}
+          </QueryProvider>
         </NextAuthProvider>
-        <Toaster richColors position="bottom-right"/>
+        <Toaster position="top-right" richColors/>
       </body>
     </html>
   );
