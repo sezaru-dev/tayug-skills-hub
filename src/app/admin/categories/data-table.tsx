@@ -24,6 +24,7 @@ import { DataTablePagination } from "@/components/custom/Pagination"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { AddCategory } from "../../../features/admin/categories/components/add-category-dialog"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -65,7 +66,8 @@ export function DataTable<TData, TValue>({
           onChange={(event) => table.setGlobalFilter(event.target.value)}
           className="w-full md:max-w-sm"
         />
-        <Button className="bg-blue-500">Add New Category</Button>
+        <AddCategory/>
+        {/* <Button className="bg-blue-600 hover:bg-blue-700">Add New Category</Button> */}
       </div>
 
 
