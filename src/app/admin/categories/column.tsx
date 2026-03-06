@@ -17,6 +17,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from "@/components/ui/input"
 import ToggleStatusDropdownMenuItem from "@/features/admin/categories/components/toggle-status-dropdownmenuitem"
 import RenameCategoryDialog from "@/features/admin/categories/components/rename-category-dialog"
+import { PermanentDeleteAlertDialog } from "@/features/admin/categories/components/permanent-delete-alert-dialog"
 
 export type Category = {
   id: string
@@ -197,7 +198,8 @@ export const columns: ColumnDef<Category>[] = [
 
 
             <ToggleStatusDropdownMenuItem categoryId={id} isActive={isActive} />
-            <DropdownMenuItem className="bg-red-500 text-white">Delete</DropdownMenuItem>
+
+            <PermanentDeleteAlertDialog id={row.original.id} categoryName={row.original.name} />
           </DropdownMenuContent>
         </DropdownMenu>
       )
