@@ -26,7 +26,12 @@ export const CategoryRepository = {
     return !!category
   },
   async getAll() {
-    return prisma.skillCategory.findMany()
+    return prisma.skillCategory.findMany({
+      orderBy: [
+        { updatedAt: "desc" },
+        { createdAt: "desc" },
+      ],
+    })
   },
   async getAllButIdAndNameOnly() {
     return prisma.skillCategory.findMany({
@@ -36,5 +41,39 @@ export const CategoryRepository = {
       },
     })
   },
+  async toggleIsActive(id: string) {
+    const category = await prisma.skillCategory.findUnique({ where: { id } });
+    if (!category) throw new Error("Category not found");
+
+    return prisma.skillCategory.update({
+      where: { id },
+      data: { isActive: !category.isActive }, // flip actual DB value
+    });
+  },
+  async renameCategory(id: string, name: string) {
+    const slug = generateSlug(name)
+
+    return prisma.skillCategory.update({
+      where: { id },
+      data: {
+        name,
+        slug,
+      },
+    })
+
+  },
+  async crossmatchCategoryName(id: string, name:string){
+    const category = await prisma.skillCategory.findUnique({
+      where: { id },
+    })
+    if (!category) return false;
+    return category.name === name;
+  },
+  async deleteCategory(id: string) {
+    return prisma.skillCategory.delete({
+      where: { id },
+    })
+  }
+
 }
 
