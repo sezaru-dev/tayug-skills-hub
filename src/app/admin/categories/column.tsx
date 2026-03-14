@@ -6,15 +6,12 @@ import { ArrowUpDown } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import ToggleStatusDropdownMenuItem from "@/features/admin/categories/components/toggle-status-dropdownmenuitem"
 import RenameCategoryDialog from "@/features/admin/categories/components/rename-category-dialog"
 import { PermanentDeleteAlertDialog } from "@/features/admin/categories/components/permanent-delete-alert-dialog"
