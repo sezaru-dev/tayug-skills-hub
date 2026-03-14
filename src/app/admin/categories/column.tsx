@@ -18,16 +18,8 @@ import { Input } from "@/components/ui/input"
 import ToggleStatusDropdownMenuItem from "@/features/admin/categories/components/toggle-status-dropdownmenuitem"
 import RenameCategoryDialog from "@/features/admin/categories/components/rename-category-dialog"
 import { PermanentDeleteAlertDialog } from "@/features/admin/categories/components/permanent-delete-alert-dialog"
-
-export type Category = {
-  id: string
-  name: string
-  slug: string
-  isActive: boolean
-  createdAt: Date
-  updatedAt: Date
-  skills: string[]
-}
+import ViewSkillsDialog from "@/features/admin/categories/components/view-skills-dialog"
+import { Category } from "@/features/admin/categories/types"
 
 export const columns: ColumnDef<Category>[] = [
   {
@@ -78,7 +70,7 @@ export const columns: ColumnDef<Category>[] = [
       return isActive ? (
         <Badge
           variant="outline"
-          className="border-emerald-300 bg-emerald-50 text-emerald-700"
+          className="border-blue-300 bg-blue-50 text-blue-700"
         >
           Active
         </Badge>
@@ -158,43 +150,12 @@ export const columns: ColumnDef<Category>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
 
-          <Dialog >
-            <DialogTrigger asChild>
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                View Skills
-              </DropdownMenuItem>
-            </DialogTrigger>
+            <ViewSkillsDialog/>
 
-            <DialogContent className="max-w-lg">
-              <DialogHeader>
-                <DialogTitle>Home Repair & Maintenance</DialogTitle>
-                <DialogDescription>
-                  Skills under this category
-                </DialogDescription>
-              </DialogHeader>
+            <DropdownMenuSeparator />
 
-              <Input placeholder="Search skills..." className="mb-3" />
-
-              <div className="max-h-64 overflow-y-auto space-y-2">
-                {skills?.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between border rounded-md px-3 py-2"
-                  >
-                    <span>{skill}</span>
-                    <Badge variant={isActive ? "secondary" : "outline"}>
-                      {isActive ? "Active" : "Inactive"}
-                    </Badge>
-                  </div>
-                ))}
-              </div>
-            </DialogContent>
-          </Dialog>
-
-          <DropdownMenuSeparator />
-
-          {/* rename category action */}
-          <RenameCategoryDialog id={row.original.id} currentName={row.original.name} />
+            {/* rename category action */}
+            <RenameCategoryDialog id={row.original.id} currentName={row.original.name} />
 
 
             <ToggleStatusDropdownMenuItem categoryId={id} isActive={isActive} />
