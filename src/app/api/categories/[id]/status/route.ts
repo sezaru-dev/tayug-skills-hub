@@ -14,13 +14,18 @@ export async function PATCH (req: Request, { params }: { params: { id: string } 
   }
 
   try {
-    const updatedCategoryStatus  = await CategoryRepository.toggleIsActive(id);
+    const { isActive } = await req.json();
+    if (isActive === undefined) {
+      return NextResponse.json({ error: "isActive field is required" }, { status: 400 });
+    }
+
+    const updatedCategoryStatus  = await CategoryRepository.changeStatus(id, isActive);
 
     return NextResponse.json(updatedCategoryStatus, { status: 200 });
   } catch (error) {
     console.error(error);
     
-    let message = "Failed to toggle category status";
+    let message = "Failed to change category status";
 
     if (error instanceof Error) {
       message = error.message;
