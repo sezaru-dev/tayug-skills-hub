@@ -21,5 +21,16 @@ export default function AdminDashboardCategoryLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return  (
+    <main className="flex-1 p-6 md:p-8 space-y-6 mt-8">
+      {/* header */}
+      <header>
+        <h1 className="text-2xl font-bold tracking-tight">Manage Categories</h1>
+        <p className="text-muted-foreground text-sm">
+          Create, update, and organize skill categories to keep the platform structured and user-friendly.
+        </p>
+      </header>
+      {children}
+    </main>
+  )
 }
