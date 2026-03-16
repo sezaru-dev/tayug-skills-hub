@@ -80,6 +80,8 @@ export async function DELETE (req: Request, { params }: { params: { id: string }
       );
     }
 
+    
+
     // Proceed with deleting the category
     const deleteCategory = await CategoryRepository.deleteCategory(id)
     return NextResponse.json(deleteCategory, { status: 200 });
