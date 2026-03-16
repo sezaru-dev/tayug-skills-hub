@@ -1,14 +1,16 @@
 'use client'
 
+import LoadingSkeleton from "@/components/custom/LoadingSkeleton"
 import { columns } from "./column"
 import { DataTable } from "./data-table"
 import { useCategories } from "@/features/admin/categories/queries/use-categories"
+import ErrorUI from "@/features/admin/categories/components/ErrorUI"
 
 export default function CategoriesPage() {
   const { data, isLoading, error } = useCategories()
 
-  if (isLoading) return <p>Loading...</p>
-  if (error) return <div className="text-red-600">{(error as Error).message}</div>
+  if (isLoading) return <LoadingSkeleton/>
+  if (error) return <ErrorUI error={error} />
 
   return (
     <div className="w-full">
