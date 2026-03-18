@@ -5,7 +5,7 @@ import {
   Dialog,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import AddCategoryForm from "./category-form"
+import AddCategoryForm from "./AddCategoryForm"
 
 export function AddCategory() {
   const [open, setOpen] = useState<boolean>(false)
