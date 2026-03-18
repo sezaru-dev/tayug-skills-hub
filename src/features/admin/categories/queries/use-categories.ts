@@ -1,16 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { GetParameters } from "@/app/api/categories/route"
+import { useQuery } from "@tanstack/react-query"
 
-export function useCategories() {
+export function useCategories(params?: GetParameters) {
   return useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", params],
+
     queryFn: async () => {
-      const res = await fetch("/api/categories");
-      if (!res.ok) throw new Error("Failed to fetch categories");
-      return res.json();
+      const query = new URLSearchParams()
+
+      if (params?.limit) query.set("limit", String(params.limit))
+      if (params?.sortBy) query.set("sortBy", params.sortBy)
+      if (params?.sortOrder) query.set("sortOrder", params.sortOrder)
+      if (params?.idAndNameOnly)
+        query.set("idAndNameOnly", String(params.idAndNameOnly))
+
+      const res = await fetch(`/api/categories?${query.toString()}`)
+
+      if (!res.ok) throw new Error("Failed to load categories. Please try again")
+
+      return res.json()
     },
-    staleTime: 5 * 60 * 1000,      // data is fresh for 5 minutes
-    refetchOnWindowFocus: true,    // revalidate when user returns to the tab
-    refetchOnReconnect: true,      // revalidate if network reconnects
-    refetchInterval: false,        // no automatic polling
-  });
+
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+  })
 }
