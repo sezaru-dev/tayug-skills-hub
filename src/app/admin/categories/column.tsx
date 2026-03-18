@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
-import RenameCategoryDialog from "@/features/admin/categories/components/rename-category-dialog"
-import { PermanentDeleteAlertDialog } from "@/features/admin/categories/components/permanent-delete-alert-dialog"
-import ViewSkillsDialog from "@/features/admin/categories/components/view-skills-dialog"
+import RenameCategoryDialog from "@/features/admin/categories/components/RenameCategoryDialog"
+import { PermanentDeleteCategoryAlertDialog } from "@/features/admin/categories/components/PermanentDeleteCategoryAlertDialog"
+import ViewSkillsDialog from "@/features/admin/categories/components/ViewSkillsDialog"
 import { Category } from "@/features/admin/categories/types"
 import { ChangeCategoryStatusAlertDialog } from "@/features/admin/categories/components/change-status/ChangeCategoryStatusAlertDialog"
 import SkillCountTooltip from "@/features/admin/categories/components/SkillCountTooltip"
@@ -147,7 +147,7 @@ export const columns: ColumnDef<Category>[] = [
 
             {/* permanent delete category action */}
             {row.original.skills?.length === 0 && (
-              <PermanentDeleteAlertDialog id={row.original.id} categoryName={row.original.name} />
+              <PermanentDeleteCategoryAlertDialog id={row.original.id} categoryName={row.original.name} />
             )}
 
           </DropdownMenuContent>
