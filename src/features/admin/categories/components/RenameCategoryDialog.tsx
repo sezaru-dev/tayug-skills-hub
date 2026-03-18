@@ -1,7 +1,7 @@
 'use client'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import React, { useState } from 'react'
-import RenameCategoryForm from './rename-category-form'
+import RenameCategoryForm from './RenameCategoryForm'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 
 type RenameCategoryDialogProps = {
