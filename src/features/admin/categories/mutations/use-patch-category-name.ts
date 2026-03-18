@@ -1,4 +1,4 @@
-import { Category } from "@/app/admin/categories/column";
+import { Category } from "../types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type PatchCategoryPayload = {
