@@ -23,7 +23,7 @@ type DeleteCategoryDialogProps = {
 
 }
 
-export function PermanentDeleteAlertDialog({
+export function PermanentDeleteCategoryAlertDialog({
   id,
   categoryName,
 }: DeleteCategoryDialogProps) {
