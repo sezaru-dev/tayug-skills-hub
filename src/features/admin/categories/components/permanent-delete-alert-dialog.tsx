@@ -74,18 +74,20 @@ export function PermanentDeleteAlertDialog({
             Delete Category
           </AlertDialogTitle>
 
-          <AlertDialogDescription className="space-y-2">
-            <p>
-              This action cannot be undone. Deleting this category may affect associated listings.
-            </p>
+          <AlertDialogDescription asChild>
+            <div className="space-y-2">              
+              <p>
+                This action cannot be undone. Deleting this category may affect associated listings.
+              </p>
 
-            <p className="text-sm">
-              To confirm, type{' '}
-              <strong className="text-foreground">
-                {categoryName}
-              </strong>{' '}
-              below.
-            </p>
+              <p className="text-sm">
+                To confirm, type{' '}
+                <strong className="text-foreground">
+                  {categoryName}
+                </strong>{' '}
+                below.
+              </p>
+            </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
 
