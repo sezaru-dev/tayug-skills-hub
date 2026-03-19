@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/field"
 import { toast } from 'sonner'
 import { useCreateCategory } from '../mutations/use-create-category'
+import { errorToast, successToast } from '@/components/utils/custom-toast'
+
 type AddCategoryFormProps = {
   closeDialog: () => void
 }
@@ -37,14 +39,11 @@ export default function AddCategoryForm({ closeDialog }: AddCategoryFormProps) {
       { name: data.name},
       {
         onSuccess: () => {
-          toast.success("Category has been created.", { id: toastId });
+          successToast(toastId, "Category has been created..")
           closeDialog()
         },
         onError: (err) => {
-          toast.error(
-            err instanceof Error ? err.message : "Something went wrong.",
-            { id: toastId }
-          );
+          errorToast(toastId, err instanceof Error ? err.message : "Something went wrong.")
         },
       }
     );

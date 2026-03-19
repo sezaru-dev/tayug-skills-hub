@@ -16,11 +16,11 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useDeleteCategory } from '../mutations/use-delete-category'
 import { toast } from 'sonner'
+import { errorToast, successToast } from '@/components/utils/custom-toast'
 
 type DeleteCategoryDialogProps = {
   id: string
   categoryName: string
-
 }
 
 export function PermanentDeleteCategoryAlertDialog({
@@ -41,14 +41,11 @@ export function PermanentDeleteCategoryAlertDialog({
       { id, confirmText},
       {
         onSuccess: () => {
-          toast.success("Category has been deleted.", { id: toastId });
+          successToast(toastId, "Category has been deleted.")
           setOpen(false)
         },
         onError: (err) => {
-          toast.error(
-            err instanceof Error ? err.message : "Something went wrong.",
-            { id: toastId }
-          );
+          errorToast(toastId, err instanceof Error ? err.message : "Something went wrong.")
         },
       }
     );

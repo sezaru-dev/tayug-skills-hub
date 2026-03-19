@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button'
 
 import { toast } from 'sonner'
 import { usePatchCategoryStatus } from '../../mutations/use-patch-category-status'
+import { errorToast, successToast } from '@/components/utils/custom-toast'
 
 
 type ChangeStatusDialogProps = {
@@ -39,14 +40,11 @@ export function ChangeCategoryStatusAlertDialog({
       { id, isActive: !isActive }, // pass the desired status
       {
         onSuccess: () => {
-          toast.success(`Category has been ${isActive ? "deactivated" : "activated"}.`, { id: toastId });
+          successToast(toastId, `Category has been ${isActive ? "deactivated" : "activated"}.`)
           setOpen(false)
         },
         onError: (err: Error) => {
-          toast.error(
-            err instanceof Error ? err.message : "Something went wrong.",
-            { id: toastId }
-          );
+          errorToast(toastId, err instanceof Error ? err.message : "Something went wrong.")
         },
       }
     );

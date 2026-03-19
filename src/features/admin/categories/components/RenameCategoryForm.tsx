@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 import { DialogContent, DialogHeader } from '@/components/ui/dialog'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { usePatchCategoryName } from '../mutations/use-patch-category-name'
+import { errorToast, successToast } from '@/components/utils/custom-toast'
 
 type RenameCategoryFormProps = {
   id: string
@@ -36,14 +37,11 @@ export default function RenameCategoryForm({ id, currentName, onSuccess }: Renam
         { id, name: data.name },
         {
           onSuccess: () => {
-            toast.success("Category name has been renamed.", { id: toastId });
+            successToast(toastId, "Category name has been renamed.")
             onSuccess();
           },
           onError: (err) => {
-            toast.error(
-              err instanceof Error ? err.message : "Something went wrong.",
-              { id: toastId }
-            );
+            errorToast(toastId, err instanceof Error ? err.message : "Something went wrong.")
           },
         }
       );
