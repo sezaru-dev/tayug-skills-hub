@@ -8,32 +8,18 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-
-export type Skill = {
-  id: string
-  name: string
-  slug: string
-  isActive: boolean
-  category: string
-  createdAt: Date
-  updatedAt: Date
-}
+import { Skill } from "@/features/admin/skills/type"
+import RenameSkillDialog from "@/features/admin/skills/components/rename/RenameSkillDialog"
+import ChangeCategoryDialog from "@/features/admin/skills/components/change-category/ChangeCategoryDialog"
+import { ChangeSkillStatusAlertDialog } from "@/features/admin/skills/components/change-status/ChangeSkillStatusAlertDialog"
+import { PermanentDeleteSkillAlertDialog } from "@/features/admin/skills/components/delete/PermanentDeleteSkillAlertDialog"
 
 export const columns: ColumnDef<Skill>[] = [
-  {
-    accessorKey: "id",
-    header: "No.",
-    cell: ({ row }) => {
-      return `${row.index + 1}.`
-    }
-  },
+
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -43,15 +29,26 @@ export const columns: ColumnDef<Skill>[] = [
           className="pl-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Category Name
+          Skill
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
   },
   {
-    accessorKey: "slug",
-    header: "Slug",
+    accessorKey: "category.name",
+        header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="pl-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Category
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "isActive",
@@ -69,40 +66,48 @@ export const columns: ColumnDef<Skill>[] = [
     },
     cell: ({ row }) => {
       const isActive = row.getValue("isActive") as boolean;
-      return isActive ? (
-        <Badge
-          variant="secondary"
-          className="bg-blue-50 text-blue-800"
-        >
-          Active
-        </Badge>
+            return isActive ? (
+              <Badge
+                variant="outline"
+                className="border-blue-300 bg-blue-50 text-blue-700"
+              >
+                Active
+              </Badge>
+            ) : (
+              <Badge
+                variant="outline"
+                className="border-muted text-muted-foreground"
+              >
+                Inactive
+              </Badge>
+            )
+    },
+  },
 
-      ) : (
-        <Badge variant="secondary" className="text-gray-500">Inactive</Badge>
-      );
-    },
+    {
+  accessorKey: "updatedAt",
+  header: "Updated At",
+  cell: ({ row }) => {
+    const date = new Date(row.getValue("updatedAt") as string);
+    return (
+      <time dateTime={date.toISOString()}>
+        {date.toLocaleString("en-PH", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })}
+      </time>
+    );
   },
-  {
-    accessorKey: "category",
-        header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="pl-0"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Category
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-  },
+},
 {
     id: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      const skills = row.getValue("skills") as string[];
-      const isActive = true as Boolean
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -114,44 +119,12 @@ export const columns: ColumnDef<Skill>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
+            <RenameSkillDialog id={row.original.id} currentName={row.original.name} categoryId={row.original.categoryId} />
 
-          <Dialog >
-            <DialogTrigger asChild>
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                View Skills
-              </DropdownMenuItem>
-            </DialogTrigger>
+            <ChangeCategoryDialog id={row.original.id}  name={row.original.name} currentCategoryId={row.original.categoryId} />
 
-            <DialogContent className="max-w-lg">
-              <DialogHeader>
-                <DialogTitle>Home Repair & Maintenance</DialogTitle>
-                <DialogDescription>
-                  Skills under this category
-                </DialogDescription>
-              </DialogHeader>
-
-              <Input placeholder="Search skills..." className="mb-3" />
-
-              {/* <div className="max-h-64 overflow-y-auto space-y-2">
-                {skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between border rounded-md px-3 py-2"
-                  >
-                    <span>{skill}</span>
-                    <Badge variant={isActive ? "secondary" : "outline"}>
-                      {isActive ? "Active" : "Inactive"}
-                    </Badge>
-                  </div>
-                ))}
-              </div> */}
-            </DialogContent>
-          </Dialog>
-
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Add Skill</DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Deactivate</DropdownMenuItem>
+            <ChangeSkillStatusAlertDialog id={row.original.id} isActive={row.original.isActive} />
+            <PermanentDeleteSkillAlertDialog id={row.original.id} categoryName={row.original.name} />
           </DropdownMenuContent>
         </DropdownMenu>
       )
