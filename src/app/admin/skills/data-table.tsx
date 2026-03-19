@@ -24,6 +24,7 @@ import { DataTablePagination } from "@/components/custom/Pagination"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { AddSkillDialog } from "@/features/admin/skills/components/AddSkillDialog"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -65,7 +66,7 @@ export function DataTable<TData, TValue>({
           onChange={(event) => table.setGlobalFilter(event.target.value.trim())}
           className="w-full md:max-w-sm"
         />
-        <Button className="bg-blue-500">Add New Skill</Button>
+        <AddSkillDialog/>
       </div>
 
 
