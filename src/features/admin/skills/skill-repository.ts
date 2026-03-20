@@ -3,7 +3,7 @@ import { generateSlug } from "../categories/utils"
 import { GetParameters } from "@/app/api/categories/route"
 import { Prisma } from "@prisma/client"
 
-export type CreateSkillInputProps = {
+export type CreateSkillInputType = {
   name: string
   categoryId: string
 }
@@ -15,7 +15,7 @@ const SORT_ORDERS = ["asc", "desc"] as const
 type SortOrderType = (typeof SORT_ORDERS)[number]
 
 export const SkillRepository = {
-  async create({ name, categoryId }: CreateSkillInputProps) {
+  async create({ name, categoryId }: CreateSkillInputType) {
     const slug = generateSlug(name)
 
     return prisma.skill.create({
