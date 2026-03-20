@@ -84,7 +84,7 @@ export async function DELETE (req: Request, { params }: { params: { id: string }
       return NextResponse.json({ error: "Missing data" }, { status: 400 })
     }
 
-    const isNameMatch = await SkillRepository.matchCategoryName(id, confirmText)
+    const isNameMatch = await SkillRepository.matchSkillName(id, confirmText)
     if (!isNameMatch) {
       return NextResponse.json(
         { error: "Skill name does not match." },
@@ -93,7 +93,7 @@ export async function DELETE (req: Request, { params }: { params: { id: string }
     }
 
     // Proceed with deleting the skill
-    const deleteSkill = await SkillRepository.deleteCategory(id)
+    const deleteSkill = await SkillRepository.deleteSkill(id)
     return NextResponse.json(deleteSkill, { status: 200 });
 
   } catch (error) {
