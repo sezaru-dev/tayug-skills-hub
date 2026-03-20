@@ -4,7 +4,6 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field
 import { Input } from '@/components/ui/input'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddSkillFormInput, AddSkillFormSchema } from '../schema'
 import SelectCategory from './SelectCategory'
