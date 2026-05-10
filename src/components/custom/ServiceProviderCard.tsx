@@ -1,88 +1,96 @@
-"use client";
+"use client"
 
-import React, { useState } from "react";
-import { Bookmark } from "lucide-react";
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import React, { useState } from "react"
+import { MapPin } from "lucide-react"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
+type Skill = {
+  id: string
+  name: string
+  category?: string
+}
 
 type ServiceProviderCardProps = {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  skills: string[]; // now an array
-  location: string;
-  onViewProfile?: (id: string) => void;
-};
+  id: string
+  fullname: string
+  headline: string
+  barangay: string
+  skills: Skill[]
+  onViewProfile?: (id: string) => void
+}
 
 export const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({
   id,
-  name,
-  avatarUrl,
+  fullname,
+  headline,
+  barangay,
   skills,
-  location,
-  onViewProfile,
 }) => {
-  const [bookmarked, setBookmarked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false)
 
-  const handleBookmarkToggle = () => setBookmarked((prev) => !prev);
-  const handleViewProfile = () => onViewProfile?.(id);
+  const initials = fullname
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase()
+
+  const visibleSkills = skills.slice(0, 3)
 
   return (
-    <Card className="relative flex flex-col items-center text-center p-4 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-transform transform rounded-lg">
-      {/* Bookmark Toggle */}
-      <button
-        onClick={handleBookmarkToggle}
-        className="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-full p-2 hover:scale-110 transition-transform"
-      >
-        <Bookmark
-          className={`w-5 h-5 transition-colors ${
-            bookmarked ? "text-blue-600 fill-current" : "text-gray-400"
-          }`}
-        />
-      </button>
+    <Card className="flex flex-col p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all rounded-xl h-full">
 
-      <CardHeader className="flex flex-col items-center space-y-2 p-0">
+      {/* Top Section */}
+      <div className="flex gap-4 items-start">
+
         {/* Avatar */}
-        <Image
-          src={avatarUrl}
-          alt={name}
-          width={96}          
-          height={96}         
-          className="rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
-        />
-
-        {/* Name */}
-        <h3 className="text-lg font-semibold">{name}</h3>
-
-        {/* Location */}
-        <p className="text-sm text-muted-foreground">{location}</p>
-
-        {/* Skills */}
-        <div className="flex flex-wrap justify-center gap-1 mt-1">
-          {skills.map((skill, index) => (
-            <span
-              key={index}
-              className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 px-2 py-0.5 rounded-full"
-            >
-              {skill}
-            </span>
-          ))}
+        <div className="w-14 h-14 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-100 border shrink-0">
+          {initials}
         </div>
-      </CardHeader>
 
-      <CardFooter className="pt-4 w-full">
-        <Button
-          onClick={handleViewProfile}
-          className="w-full bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium"
-        >
-          View Profile
-        </Button>
-      </CardFooter>
+        {/* Info */}
+        <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+
+          {/* Name */}
+          <h3 className="text-sm font-semibold truncate">
+            {fullname}
+          </h3>
+
+          {/* Headline (limit but no fixed height) */}
+          <p className="text-sm text-gray-800 dark:text-gray-200 font-medium leading-snug line-clamp-2">
+            {headline}
+          </p>
+
+          {/* Skills */}
+          <div className="flex flex-wrap gap-1.5">
+            {visibleSkills.map((skill) => (
+              <span
+                key={skill.id}
+                className="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full"
+              >
+                {skill.name}
+              </span>
+            ))}
+          </div>
+
+          {/* Location */}
+          <div className="flex items-center gap-1.5 text-xs text-gray-500 pt-0.5">
+            <MapPin className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{barangay}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA pinned bottom */}
+      <div className="mt-auto pt-4">
+        <Link href={`/browse-providers/${id}`} className="block">
+          <Button className="w-full text-sm font-medium" size="sm">
+            View Profile
+          </Button>
+        </Link>
+      </div>
     </Card>
-  );
-};
+  )
+}
