@@ -12,12 +12,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
-import RenameCategoryDialog from "@/features/admin/categories/components/RenameCategoryDialog"
-import { PermanentDeleteCategoryAlertDialog } from "@/features/admin/categories/components/PermanentDeleteCategoryAlertDialog"
-import ViewSkillsDialog from "@/features/admin/categories/components/ViewSkillsDialog"
-import { Category } from "@/features/admin/categories/types"
-import { ChangeCategoryStatusAlertDialog } from "@/features/admin/categories/components/change-status/ChangeCategoryStatusAlertDialog"
-import SkillCountTooltip from "@/features/admin/categories/components/SkillCountTooltip"
+import RenameCategoryDialog from "@/features/categories/components/RenameCategoryDialog"
+import { PermanentDeleteCategoryAlertDialog } from "@/features/categories/components/PermanentDeleteCategoryAlertDialog"
+import ViewSkillsDialog from "@/features/categories/components/ViewSkillsDialog"
+import { Category } from "@/features/categories/types"
+import { ChangeCategoryStatusAlertDialog } from "@/features/categories/components/change-status/ChangeCategoryStatusAlertDialog"
+import SkillCountTooltip from "@/features/categories/components/SkillCountTooltip"
 
 export const columns: ColumnDef<Category>[] = [
   {
