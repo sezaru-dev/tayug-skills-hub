@@ -11,7 +11,6 @@ export default function Home() {
       <HowThePlatformWorks/>
       <WhatMakesUsDifferent/>
       <CTASection/>
-      <Footer/>
     </div>
   );
 }
