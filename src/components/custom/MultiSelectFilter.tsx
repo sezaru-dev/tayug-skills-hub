@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -15,43 +15,48 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Funnel } from "lucide-react"
-/* import { Table } from "@tanstack/react-table"
-import { capitalize } from "@/utils/capitalize" */
+import { useRouter, useSearchParams, usePathname } from "next/navigation"
+import { ActiveCategory } from "@/features/categories/queries/use-get-active-categories"
 
-type MultiSelectFilterProps = { /* <TData> */
-  /* table: Table<TData> */
-  columnKey: string
+
+type MultiSelectFilterProps = {
   label?: string
-  options?: string[]
+  options?: ActiveCategory[]
+  paramKey?: string // e.g. "categories"
 }
-export const skillGroups = [
-  "Home Repair & Maintenance",
-  "Cleaning & Sanitation",
-  "Construction & Engineering",
-  "Automotive & Transport",
-  "Beauty & Personal Care",
-  "Food & Catering",
-  "Education & Tutoring",
-  "Events & Creative Services",
-  "Health & Medical Services",
-  "Business & Professional Services",
-  "Technology & IT",
-  "Agriculture & Skilled Labor",
-  "Logistics & Errands",
-  "Tailoring & Custom Work",
-  "Home & Lifestyle Services",
-];
 
-
-
-
-export function MultiSelectFilter({/* <TData> */
-  /* table, */
-  /* columnKey, */
+export function MultiSelectFilter({
   label = "Filter",
-  options = skillGroups,
-}: MultiSelectFilterProps) {/* <TData> */
-  const [selected, setSelected] = useState<string[]>([])
+  options,
+  paramKey = "categories",
+}: MultiSelectFilterProps) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+
+  // 👇 hydrate from URL
+  const [selected, setSelected] = useState<string[]>(() => {
+    const param = searchParams.get(paramKey)
+    return param ? param.split(",") : []
+  })
+
+  // 👇 keep UI in sync when URL changes (back/forward nav)
+  useEffect(() => {
+    const param = searchParams.get(paramKey)
+    setSelected(param ? param.split(",") : [])
+  }, [searchParams, paramKey])
+
+  function updateURL(values: string[]) {
+    const params = new URLSearchParams(searchParams.toString())
+
+    if (values.length > 0) {
+      params.set(paramKey, values.join(","))
+    } else {
+      params.delete(paramKey)
+    }
+
+    router.push(`${pathname}?${params.toString()}`)
+  }
 
   function toggleValue(value: string) {
     const updated = selected.includes(value)
@@ -59,19 +64,18 @@ export function MultiSelectFilter({/* <TData> */
       : [...selected, value]
 
     setSelected(updated)
-/*     table.getColumn(columnKey)?.setFilterValue(
-      updated.length ? updated : undefined
-    ) */
+    updateURL(updated)
   }
-
-  
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <Funnel className="h-4 w-4" />
-          <span className="hidden sm:block ml-1">{label}</span>
+          <span className="hidden sm:block ml-1">
+            {label}
+            {selected.length > 0 && ` (${selected.length})`}
+          </span>
         </Button>
       </DropdownMenuTrigger>
 
@@ -79,18 +83,18 @@ export function MultiSelectFilter({/* <TData> */
         <Command>
           <CommandInput placeholder={`Search ${label}...`} />
           <CommandGroup>
-            {options.map((opt) => (
+            {options?.map((category) => (
               <CommandItem
-                key={opt}
-                onSelect={() => toggleValue(opt)}
+                key={category.slug}
+                onSelect={() => toggleValue(category.slug)}
                 className="flex items-center gap-2 capitalize text-nowrap"
               >
                 <Checkbox
-                  checked={selected.includes(opt)}
-                  onCheckedChange={() => toggleValue(opt)}
-                   className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+                  checked={selected.includes(category.slug)}
+                  onCheckedChange={() => toggleValue(category.slug)}
+                  className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
                 />
-                {opt}
+                {category.name}
               </CommandItem>
             ))}
           </CommandGroup>
