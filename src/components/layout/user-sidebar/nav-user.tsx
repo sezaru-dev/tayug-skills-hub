@@ -1,12 +1,10 @@
 "use client"
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
   LogOut,
+  UserRoundCog,
 } from "lucide-react"
-
 import {
   Avatar,
   AvatarFallback,
@@ -28,13 +26,26 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { signOut } from "next-auth/react"
-import { useSession } from "next-auth/react"
 import Link from "next/link"
+import { Session } from "next-auth"
+import { useGetProfileById } from "@/features/profile/queries/use-get-profile-by-id"
+import { Skeleton } from "@/components/ui/skeleton"
 
 
-export function NavUser() {
+type AvatarProps = {
+  session: Session
+
+}
+
+export function NavUser({session}: AvatarProps) {
   const { isMobile } = useSidebar()
-  const { data: session } = useSession()
+  const { data : profile, isLoading, error } = useGetProfileById()
+  
+  if (error) return <div className="text-red-600">{(error as Error).message}</div>
+
+  const fullname = profile?.fullname ? profile.fullname : session.user.name
+  const avatarInitial = profile?.fullname ? profile.fullname.charAt(0).toUpperCase() : session?.user?.name?.charAt(0).toUpperCase()
+  
   
   return (
     <SidebarMenu>
@@ -45,18 +56,35 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
-                {session?.user?.image ? 
-                <AvatarImage src={session?.user?.image} alt={session?.user?.name ?? "User avatar"}  />
-                :
-                <AvatarFallback className="rounded-lg">{session?.user?.name?.charAt(0).toUpperCase() ?? ""}</AvatarFallback>
-                }
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{session?.user?.name}</span>
-                <span className="truncate text-xs">{session?.user?.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+            {isLoading ? (
+              <>
+                <Skeleton className="h-8 w-8 rounded-lg" />
+
+                <div className="grid flex-1 gap-1 text-left">
+                  <Skeleton className="h-4 w-[120px]" />
+                  <Skeleton className="h-3 w-[160px]" />
+                </div>
+
+                <Skeleton className="ml-auto h-4 w-4" />
+              </>
+            ) : (
+              <>
+                <Avatar className="h-8 w-8 rounded-lg">
+                  {session?.user?.image ? (
+                    <AvatarImage src={session.user.image} />
+                  ) : (
+                    <AvatarFallback>{avatarInitial}</AvatarFallback>
+                  )}
+                </Avatar>
+
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{fullname}</span>
+                  <span className="truncate text-xs">{session?.user?.email}</span>
+                </div>
+
+                <ChevronsUpDown className="ml-auto size-4" />
+              </>
+            )}
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -71,11 +99,11 @@ export function NavUser() {
                   {session?.user?.image ? 
                   <AvatarImage src={session?.user?.image} alt={session?.user?.name ?? "User avatar"}  />
                   :
-                  <AvatarFallback className="rounded-lg">{session?.user?.name?.charAt(0).toUpperCase() ?? ""}</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">{avatarInitial}</AvatarFallback>
                   }
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{session?.user?.name}</span>
+                  <span className="truncate font-semibold">{fullname}</span>
                   <span className="truncate text-xs">{session?.user?.email}</span>
                 </div>
               </div>
@@ -85,14 +113,8 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 <Link href='/dashboard/account' className="flex items-center gap-2">
-                  <BadgeCheck />
-                  Account
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href='/dashboard/notifications' className="flex items-center gap-2">
-                  <Bell />
-                  Notifications
+                  <UserRoundCog />
+                  Account Settings
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>

@@ -1,7 +1,5 @@
 "use client"
 
-import { type LucideIcon } from "lucide-react"
-
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -11,34 +9,35 @@ import {
 } from "@/components/ui/sidebar"
 import Link from "next/link"
 
-export function NavDashboard({
+import { iconMap, type IconKey } from "./nav-constant"
+
+export function NavProfile({
   items,
 }: {
-  items: {
+  items: readonly {
     title: string
     url: string
-    icon?: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
+    icon?: IconKey
   }[]
 }) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>PROFILE</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item, index) => (
-          <SidebarMenuItem key={index}>
+        {items.map((item, index) => {
+          const Icon = item.icon ? iconMap[item.icon] : null
+
+          return (
+            <SidebarMenuItem key={index}>
               <SidebarMenuButton tooltip={item.title} asChild>
                 <Link href={item.url} className="flex items-center gap-2">
-                  {item.icon && <item.icon />}
+                  {Icon && <Icon />}
                   <span>{item.title}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-        ))}
+          )
+        })}
       </SidebarMenu>
     </SidebarGroup>
   )
