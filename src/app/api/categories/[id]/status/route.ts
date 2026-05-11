@@ -1,4 +1,5 @@
-import { CategoryRepository } from "@/features/admin/categories/data/category-repository";
+
+import { CategoryRepository } from "@/features/categories/data/category-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
 import { NextResponse } from "next/server";

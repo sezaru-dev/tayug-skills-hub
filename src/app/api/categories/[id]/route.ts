@@ -1,5 +1,5 @@
-import { CategoryRepository } from "@/features/admin/categories/data/category-repository";
-import { categoryFormSchema } from "@/features/admin/categories/schema";
+import { CategoryRepository } from "@/features/categories/data/category-repository";
+import { categoryFormSchema } from "@/features/categories/schema";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
 import { NextResponse } from "next/server";
