@@ -1,6 +1,16 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 export default function Footer() {
+    const pathname = usePathname();
+
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isDashboardRoute = pathname.startsWith("/dashboard");
+  const isAuthRoute = pathname.startsWith("/auth");
+
+  // hide header on these routes
+  if (isAdminRoute || isDashboardRoute || isAuthRoute) return null;
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
@@ -50,7 +60,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom small disclaimer */}
-      <div className="bg-gray-800 text-gray-500 text-xs text-center py-2 mt-4">
+      <div className="bg-gray-800 text-gray-500 text-xs text-center p-4 mt-4">
         Disclaimer: Tayug Skills Hub is a personal project and is not affiliated with or endorsed by the LGU of Tayug.
       </div>
     </footer>
