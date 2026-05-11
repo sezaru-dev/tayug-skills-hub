@@ -7,45 +7,38 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const pathname = usePathname();
 
-  // Define allowed routes
-  const allowedRoutes = [
-    "/",
-    "/professionals",
-    "/about",
-    "/contact",
-  ];
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isDashboardRoute = pathname.startsWith("/dashboard");
+  const isAuthRoute = pathname.startsWith("/auth");
 
-  // Check if the pathname is allowed or matches /professionals/[id]
-  const shouldRender =
-    allowedRoutes.includes(pathname) || pathname.startsWith("/professionals/");
+  // hide header on these routes
+  if (isAdminRoute || isDashboardRoute || isAuthRoute) return null;
 
-  if (!shouldRender) return null;
-  
   return (
     <header className="bg-white border-b shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+
         {/* Logo */}
         <Link href="/" className="text-lg font-bold text-primary">
           Tayug Skills Hub
         </Link>
 
-        {/* Navigation */}
-        <nav className="flex items-center space-x-4">
-          <Link href="/professionals" className="hover:text-primary">
-            Professionals
-          </Link>
-          <Link href="/about" className="hover:text-primary">
-            About
-          </Link>
-          <Link href="/contact" className="hover:text-primary">
-            Contact
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-6">
+          <Link href="/browse-providers" className="hover:text-primary">
+            Browse
           </Link>
 
-          {/* Login Button using ShadCN Button */}
-          <Button asChild variant="outline" className="ml-4">
-            <Link href="/auth/login">Login</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="secondary">
+              <Link href="/auth/signup">Offer Services</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/auth/login">Login</Link>
+            </Button>
+          </div>
         </nav>
+
       </div>
     </header>
   );
