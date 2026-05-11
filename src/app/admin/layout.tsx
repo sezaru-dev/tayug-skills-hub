@@ -7,7 +7,7 @@ import {
 
 import { Separator } from "@/components/ui/separator";
 import { DynamicBreadcrumbs } from "@/components/custom/DynamicBreadcrumbs";
-import { AppSidebar } from "@/features/admin/components/sidebar/app-sidebar";
+import { AppSidebar } from "@/components/layout/admin-sidebar/app-sidebar";
 
 export const metadata: Metadata = {
   title: "Tayug Skills Hub – Admin Dashboard",
