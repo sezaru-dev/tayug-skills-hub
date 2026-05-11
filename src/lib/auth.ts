@@ -6,10 +6,6 @@ import { UserRepository } from "@/server/repositories/user.repository";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-/*     GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!,
-    }), */
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -40,36 +36,31 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user, account }) {
       // On first login, add user data to token
-      // On first login
+      // Runs ONLY on login or token update
       if (user) {
-        token.id = user.id
-        token.name = user.name
-        token.role = user.role
-        token.email = user.email
-         if (account?.provider) {
-          token.provider = account.provider
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.role = user.role as Role;
+
+        if (account?.provider) {
+          token.provider = account.provider;
         }
-      } else if(token.id) {
-        const dbUser = await UserRepository.findRoleById(token.id)
-        if (dbUser) token.role = dbUser.role as Role
-      } 
+      }
+      
       return token
     },
 
     async session({ session, token }) {
-      if (!session.user || !token.id) return session
-
-      // Fetch latest role from DB
-      const dbUser = await UserRepository.findRoleById(token.id)
-      if (dbUser) session.user.role = dbUser.role as Role
-      else session.user.role = token.role as Role // fallback
-
-        // Attach token info
-        session.user.id = token.id as string;
-        session.user.name = token.name;
-        session.user.email = token.email as string;
-        session.user.provider = token.provider as string;
       
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.name = token.name as string;
+        session.user.email = token.email as string;
+        session.user.role = token.role as Role;
+        session.user.provider = token.provider as string;
+      }
+
       return session;
     }
   },
