@@ -4,9 +4,10 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/dashboard/users/app-sidebar";
+import { AppSidebar } from "@/components/layout/user-sidebar/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { DynamicBreadcrumbs } from "@/components/custom/DynamicBreadcrumbs";
+
 
 export const metadata: Metadata = {
   title: "Tayug Skills Hub – Dashboard",
@@ -29,7 +30,6 @@ export default async function UserDashboardLayout({ children }: { children: Reac
               </div>
             </div>
           </header>
-
           {children}
         </SidebarInset>
       </SidebarProvider>
