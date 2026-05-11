@@ -20,10 +20,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { DataTablePagination } from "@/components/custom/Pagination"
+
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
-import { AddCategory } from "../../../features/admin/categories/components/AddCategoryDialog"
+import { AddCategory } from "@/features/categories/components/AddCategoryDialog"
+import { DataTablePagination } from "@/components/custom/Pagination"
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

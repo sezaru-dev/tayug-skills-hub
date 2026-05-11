@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal } from "lucide-react"
-import { Skill } from "@/features/admin/skills/type"
-import RenameSkillDialog from "@/features/admin/skills/components/rename/RenameSkillDialog"
-import ChangeCategoryDialog from "@/features/admin/skills/components/change-category/ChangeCategoryDialog"
-import { ChangeSkillStatusAlertDialog } from "@/features/admin/skills/components/change-status/ChangeSkillStatusAlertDialog"
-import { PermanentDeleteSkillAlertDialog } from "@/features/admin/skills/components/delete/PermanentDeleteSkillAlertDialog"
+import { Skill } from "@/features/skills/type"
+import RenameSkillDialog from "@/features/skills/components/rename/RenameSkillDialog"
+import ChangeCategoryDialog from "@/features/skills/components/change-category/ChangeCategoryDialog"
+import { ChangeSkillStatusAlertDialog } from "@/features/skills/components/change-status/ChangeSkillStatusAlertDialog"
+import { PermanentDeleteSkillAlertDialog } from "@/features/skills/components/delete/PermanentDeleteSkillAlertDialog"
 
 export const columns: ColumnDef<Skill>[] = [
 

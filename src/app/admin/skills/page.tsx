@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic"
-import { CategoryRepository } from "@/features/admin/categories/data/category-repository"
-import { CategoriesProvider } from "@/features/admin/skills/components/provider/CategoriesProvider"
-import SkillsTable from "@/features/admin/skills/components/SkillsTable"
+import { CategoryRepository } from "@/features/categories/data/category-repository"
+import { CategoriesProvider } from "@/features/skills/components/provider/CategoriesProvider"
+import SkillsTable from "@/features/skills/components/SkillsTable"
 
 export default async function SkillsPage() {
 
