@@ -7,6 +7,8 @@ import { authOptions } from "@/lib/auth";
 import Header from "@/components/sections/Header";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryProvider } from "./providers/query-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Footer from "@/components/sections/Footer";
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -32,13 +34,16 @@ export default async function RootLayout({
       <body
         className={` ${figtree.className} antialiased`}
       >
-        <Header/>
         <NextAuthProvider session={session}>
+        <Header/>
           <QueryProvider>
-            {children}
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
           </QueryProvider>
         </NextAuthProvider>
-        <Toaster position="top-right" richColors/>
+        <Toaster position="top-right"/>
+        <Footer/>
       </body>
     </html>
   );
