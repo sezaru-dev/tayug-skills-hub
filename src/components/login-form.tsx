@@ -50,87 +50,85 @@ export function LoginForm({
     })
   
    async function onSubmit(data: z.infer<typeof formSchema>) {
-           try {
-             await signIn("credentials", {
-               email: data.email,
-               password: data.password,
-               callbackUrl: '/dashboard'
-             })
-     
-           } catch (err) {
-             console.error(err);
-           }
+    try {
+      await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        callbackUrl: '/dashboard'
+      })
+
+    } catch (err) {
+      console.error(err);
+    }
     }
   
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Access your account using your email/password or Google
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
-            <FieldGroup>
-              <Controller
-                name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="form-input-email">
-                      Email
-                    </FieldLabel>
-                    <Input
-                      {...field}
-                      id="form-input-email"
-                      aria-invalid={fieldState.invalid}
-                      autoComplete="email"
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                  )}
+      <div className="flex flex-col items-center gap-1 text-center">
+        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <p className="text-sm text-balance text-muted-foreground">
+          Access your account using your email/password or Google
+        </p>
+      </div>
+
+      <form id="login-form" onSubmit={form.handleSubmit(onSubmit)}>
+        <FieldGroup>
+          <Controller
+            name="email"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="form-input-email">
+                  Email
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="form-input-email"
+                  aria-invalid={fieldState.invalid}
+                  autoComplete="email"
                 />
-              <Controller
-                name="password"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="form-input-password">
-                      Password
-                    </FieldLabel>
-                    <div className="relative">
-                      <Input
-                        {...field}
-                        type={showPassword ? "text" : "password"}
-                        id="form-input-password"
-                        aria-invalid={fieldState.invalid}
-                        autoComplete="email"
-                      />
-                      <ShowHidePasswordButton show={showPassword} onToggle={() => setShowPassword(prev => !prev)}/>
-                    </div>
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                  )}
-                />
-              <Field>
-                <Button type="submit" className="bg-blue-600 hover:bg-blue-700" form="login-form">Login</Button>
-{/*                 <Button variant="outline" type="button" onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>
-                  Continue with Google
-                </Button> */}
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
-                <FieldDescription className="text-center">
-                  Don&apos;t have an account? <Link href="/auth/signup">Sign up</Link>
-                </FieldDescription>
-            </FieldGroup>
-          </form>
-        </CardContent>
-      </Card>
+              )}
+            />
+          <Controller
+            name="password"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="form-input-password">
+                  Password
+                </FieldLabel>
+                <div className="relative">
+                  <Input
+                    {...field}
+                    type={showPassword ? "text" : "password"}
+                    id="form-input-password"
+                    aria-invalid={fieldState.invalid}
+                    autoComplete="email"
+                  />
+                  <ShowHidePasswordButton show={showPassword} onToggle={() => setShowPassword(prev => !prev)}/>
+                </div>
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+              )}
+            />
+          <Field>
+            <Button type="submit" className="bg-blue-600 hover:bg-blue-700" form="login-form">Login</Button>
+            {/* <Button variant="outline" type="button" onClick={() => signIn("google", {callbackUrl: "/dashboard"})}>
+              Continue with Google
+            </Button> */}
+          </Field>
+            <FieldDescription className="text-center">
+              Don&apos;t have an account? <Link href="/auth/signup">Sign up</Link>
+            </FieldDescription>
+        </FieldGroup>
+      </form>
+
     </div>
   )
 }
