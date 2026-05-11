@@ -3,8 +3,8 @@
 import LoadingSkeleton from "@/components/custom/LoadingSkeleton"
 import { columns } from "./column"
 import { DataTable } from "./data-table"
-import { useCategories } from "@/features/admin/categories/queries/use-categories"
-import ErrorUI from "@/features/admin/categories/components/ErrorUI"
+import { useCategories } from "@/features/categories/queries/use-categories"
+import ErrorUI from "@/features/categories/components/ErrorUI"
 
 export default function CategoriesPage() {
   const { data, isLoading, error } = useCategories()
