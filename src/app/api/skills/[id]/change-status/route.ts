@@ -1,4 +1,4 @@
-import { SkillRepository } from "@/features/admin/skills/skill-repository";
+import { SkillRepository } from "@/features/skills/skill-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
 import { NextResponse } from "next/server";

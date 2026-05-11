@@ -1,5 +1,5 @@
-import { RenameSkillFormSchema } from "@/features/admin/skills/schema";
-import { SkillRepository } from "@/features/admin/skills/skill-repository";
+import { RenameSkillFormSchema } from "@/features/skills/schema";
+import { SkillRepository } from "@/features/skills/skill-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
 import { Prisma } from "@prisma/client";
