@@ -26,7 +26,7 @@ const BrowseProvidersPage = () => {
   const providers = data?.pages.flatMap((page) => page.data) ?? []
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
+    <main className="max-w-7xl mx-auto px-4 py-10 min-h-screen mt-16">
       <header className="mb-10 space-y-2">
         <h1 className="text-3xl font-semibold tracking-tight">Browse Service Provider</h1>
         <p className="text-sm text-muted-foreground max-w-2xl">
