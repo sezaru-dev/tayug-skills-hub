@@ -57,7 +57,7 @@ export async function GET(req: Request) {
                     skill: {
                       category: {
                         slug: {
-                          in: categories, // ✅ SLUG ONLY
+                          in: categories, //  SLUG ONLY
                         },
                       },
                     },
@@ -69,10 +69,10 @@ export async function GET(req: Request) {
       },
 
       orderBy: {
-        id: "asc", // ⚠️ must match cursor
+        id: "asc", //  must match cursor
       },
 
-      take: take + 1, // 👈 check if next page exists
+      take: take + 1, //  check if next page exists
 
       cursor: cursor ? { id: cursor } : undefined,
       skip: cursor ? 1 : 0,
