@@ -142,6 +142,21 @@ export const SkillRepository = {
         },
       },
     })
+  },
+  async getActiveSkillsNameId() {
+    return prisma.skill.findMany({
+      where: {
+        isActive: true,
+        category: {
+          isActive: true,
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+      },
+    })
   }
 }
 
