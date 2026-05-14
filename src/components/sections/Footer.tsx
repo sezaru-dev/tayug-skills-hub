@@ -12,57 +12,95 @@ export default function Footer() {
   // hide header on these routes
   if (isAdminRoute || isDashboardRoute || isAuthRoute) return null;
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
-        {/* Left: Website & Disclaimer */}
-        <div className="space-y-2">
-          <h2 className="text-lg font-semibold">Tayug Skills Hub</h2>
-          <p className="text-gray-400 text-sm">
-            A personal project showcasing Tayug’s skilled professionals. 
-            This website is not connected to or endorsed by the Local Government Unit (LGU) of Tayug.
-          </p>
-          <p className="text-gray-500 text-xs mt-2">
-            &copy; 2025 Tayug Skills Hub. All rights reserved.
-          </p>
-        </div>
+    <footer className="relative bg-[#070A0F] text-gray-300 overflow-hidden">
 
-        {/* Middle: Navigation / Legal */}
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold">Legal</h3>
-          <ul className="space-y-1 text-gray-400 text-sm">
-            <li>
-              <a href="/terms" className="hover:text-white">Terms of Service</a>
-            </li>
-            <li>
-              <a href="/privacy" className="hover:text-white">Privacy Policy</a>
-            </li>
-            <li>
-              <a href="/contact" className="hover:text-white">Contact</a>
-            </li>
-          </ul>
-        </div>
+  {/* Background layer system */}
+  <div className="absolute inset-0 pointer-events-none">
 
-        {/* Right: Social Media */}
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold">Follow Us</h3>
-          <div className="flex justify-center md:justify-start space-x-4 mt-2">
-            <a href="https://facebook.com" target="_blank" className="hover:text-blue-500">
-              <FaFacebookF size={20} />
-            </a>
-            <a href="https://twitter.com" target="_blank" className="hover:text-blue-400">
-              <FaTwitter size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" className="hover:text-blue-600">
-              <FaLinkedinIn size={20} />
-            </a>
-          </div>
-        </div>
+    {/* base gradient */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#05070c] via-[#070A0F] to-[#05070c]" />
+
+    {/* subtle brand glow (20% rule) */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.08),transparent_60%)]" />
+
+  </div>
+
+  {/* Content */}
+  <div className="relative max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+
+    {/* Left */}
+    <div className="space-y-4">
+      <h2 className="text-base font-semibold text-white">
+        Tayug Skills Hub
+      </h2>
+
+      <p className="text-sm leading-relaxed text-gray-400">
+        A personal project showcasing skilled professionals in Tayug.
+        This platform is not affiliated with or endorsed by the LGU of Tayug.
+      </p>
+
+      <p className="text-xs text-gray-500">
+        © {new Date().getFullYear()} Tayug Skills Hub. All rights reserved.
+      </p>
+    </div>
+
+    {/* Middle */}
+    <div className="space-y-4">
+      <h3 className="text-sm font-semibold text-white">
+        Legal
+      </h3>
+
+      <ul className="space-y-2 text-sm text-gray-400">
+        <li>
+          <a href="#"className="hover:text-white transition-colors">
+            Terms of Service
+          </a>
+        </li>
+
+        <li>
+          <a href="#" className="hover:text-white transition-colors">
+            Privacy Policy
+          </a>
+        </li>
+
+        <li>
+          <a href="#" className="hover:text-white transition-colors">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {/* Right */}
+    <div className="space-y-4">
+      <h3 className="text-sm font-semibold text-white">
+        Social
+      </h3>
+
+      <div className="flex justify-center md:justify-start gap-5 text-gray-400">
+        <a className="hover:text-white transition-colors" href="#">
+          <FaFacebookF size={18} />
+        </a>
+
+        <a className="hover:text-white transition-colors" href="#">
+          <FaTwitter size={18} />
+        </a>
+
+        <a className="hover:text-white transition-colors" href="#">
+          <FaLinkedinIn size={18} />
+        </a>
       </div>
+    </div>
 
-      {/* Bottom small disclaimer */}
-      <div className="bg-gray-800 text-gray-500 text-xs text-center p-4 mt-4">
-        Disclaimer: Tayug Skills Hub is a personal project and is not affiliated with or endorsed by the LGU of Tayug.
-      </div>
-    </footer>
+  </div>
+
+  {/* Bottom bar */}
+  <div className="relative border-t border-gray-800 py-5 text-center">
+    <p className="text-xs text-gray-500">
+      Tayug Skills Hub is a personal project and is not affiliated with or endorsed by the LGU of Tayug.
+    </p>
+  </div>
+
+</footer>
   );
 }
