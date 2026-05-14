@@ -157,6 +157,38 @@ export const SkillRepository = {
         slug: true,
       },
     })
+  },
+  async getTotalSkills() {
+    return prisma.skill.count()
+  },
+  async recentSkills() {
+    const skills = await prisma.skill.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 5,
+      select: {
+        name: true,
+        isActive: true,
+        createdAt: true,
+        category: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    })
+
+    return skills.map((skill) => {
+      const category = skill.category!
+
+      return {
+        skill: skill.name,
+        category: category.name,
+        isActive: skill.isActive,
+        createdAt: skill.createdAt.toISOString(),
+      }
+    })
   }
 }
 

@@ -56,6 +56,9 @@ projects: {
   },
   async getAdminProviders() {
     const providers = await prisma.user.findMany({
+      where: {
+        role: "PROVIDER",
+      },
       orderBy: { createdAt: "desc" },
       select: {
         id: true,
@@ -96,5 +99,58 @@ projects: {
         name: ps.skill.name,
       })),
     }))
-  }
+  },
+  async getTotalProviders() {
+    return prisma.user.count({
+      where: {
+        role: "PROVIDER"
+      }
+    })
+  },
+  async getTotalPublishedProviders() {
+    return prisma.user.count({
+    where: {
+      profile: {
+        isPublished: true,
+      },
+    },
+  })
+  },
+  async getRecentProviders() {
+  const providers = await prisma.user.findMany({
+    where: {
+      role: "PROVIDER",
+    },
+    orderBy: { createdAt: "desc" },
+    take: 5,
+    select: {
+      id: true,
+      name:true,
+      email: true,
+      createdAt: true,
+
+      profile: {
+        select: {
+          fullname: true,
+          barangay: true,
+          isPublished: true,
+        },
+      },
+    },
+  })
+
+  return providers.map((user) => {
+    const profile = user.profile!
+
+    return {
+      id: user.id,
+      name: user.name,
+      fullname: profile.fullname,
+      email: user.email,
+      barangay: profile.barangay,
+      isPublished: profile.isPublished,
+      createdAt: user.createdAt.toISOString(),
+    }
+  })
+}
 }

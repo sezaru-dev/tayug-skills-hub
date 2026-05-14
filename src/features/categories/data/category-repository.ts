@@ -155,6 +155,9 @@ export const CategoryRepository = {
         isActive: true,
       },
     })
+  },
+  async getTotalCategories() {
+    return prisma.skillCategory.count()
   }
 
 }

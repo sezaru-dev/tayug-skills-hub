@@ -28,8 +28,8 @@ const data = {
   },
     navDashboard: [
     {
-      title: "Dashboard",
-      url: "/admin/dashboard",
+      title: "Overview",
+      url: "/admin/overview",
       icon: LayoutDashboard,
     },
     {
