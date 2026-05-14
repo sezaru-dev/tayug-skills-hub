@@ -12,24 +12,64 @@ export default function WhatMakesUsDifferent() {
     textColor: string
   }
   
-  const FeatureCard = ({ icon: Icon, title, desc, bgColor, textColor }: FeatureCardProps) => (
-    <div className="p-6 rounded-xl bg-gray-50 shadow-sm">
-      <div className={`mb-4 h-12 w-12 rounded-sm grid place-items-center ${bgColor}`}>
-        <Icon className={`w-6 h-6 ${textColor}`} />
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+  const FeatureCard = ({
+  icon: Icon,
+  title,
+  desc,
+  bgColor,
+  textColor,
+}: FeatureCardProps) => (
+  <article
+    className="
+      group
+      h-full
+      border
+      border-border
+      bg-white
+      p-7
+      transition-colors
+      duration-200
+      hover:bg-muted/30
+    "
+  >
+    <div
+      className={`
+        mb-6
+        flex
+        h-11
+        w-11
+        items-center
+        justify-center
+        rounded-md
+        ${bgColor}
+      `}
+    >
+      <Icon className={`h-5 w-5 ${textColor}`} />
     </div>
-  );
+
+    <div className="space-y-3">
+      <h3 className="text-base font-semibold tracking-tight text-foreground">
+        {title}
+      </h3>
+
+      <p className="text-sm leading-7 text-muted-foreground">
+        {desc}
+      </p>
+    </div>
+  </article>
+)
 
   return (
     <section className="py-20 bg-white px-4">
-      <div className="max-w-7xl mx-auto">
-        <header className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <h2 className="text-4xl font-semibold text-foreground">
+      <div className='max-w-7xl mx-auto'>
+
+        {/* Header */}
+        <header className='mb-16 max-w-3xl'>
+          <h2 className='text-3xl sm:text-4xl font-semibold tracking-tight text-foreground mb-4'>
             What Makes Our Platform Different
           </h2>
-          <p className="text-gray-600">
+
+          <p className='text-muted-foreground leading-relaxed'>
             Tayug’s local talent marketplace built for simplicity, trust, and real connections.
           </p>
         </header>
