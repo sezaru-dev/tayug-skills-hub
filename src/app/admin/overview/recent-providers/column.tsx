@@ -3,19 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal } from "lucide-react"
-import { SkillsCell } from "@/features/admin/service-providers/components/SkillsCell"
-import Link from "next/link"
-import { Barangay } from "@/features/service-provider.types"
-
 
 export type RecentProviders = {
   id: string

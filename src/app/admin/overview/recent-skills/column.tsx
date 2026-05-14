@@ -3,19 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal } from "lucide-react"
-import RenameSkillDialog from "@/features/skills/components/rename/RenameSkillDialog"
-import ChangeCategoryDialog from "@/features/skills/components/change-category/ChangeCategoryDialog"
-import { ChangeSkillStatusAlertDialog } from "@/features/skills/components/change-status/ChangeSkillStatusAlertDialog"
-import { PermanentDeleteSkillAlertDialog } from "@/features/skills/components/delete/PermanentDeleteSkillAlertDialog"
 
 export type RecentSkills = {
   skill: string
