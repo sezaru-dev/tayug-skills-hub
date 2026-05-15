@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import cloudinary from '@/lib/cloudinary'
 import { verifySession } from '@/lib/verify-session'
 import { Role } from '@/types/roles'

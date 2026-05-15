@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { SkillRepository } from "@/features/skills/skill-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";

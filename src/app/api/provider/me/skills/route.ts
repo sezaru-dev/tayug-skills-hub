@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic"
 import { ProfileRepository } from "@/features/profile/profile-repository";
 import { EditSkillsFormSchema } from "@/features/profile/schema";
 import { verifySession } from "@/lib/verify-session";

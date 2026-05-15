@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic"
 import { CategoryRepository } from "@/features/categories/data/category-repository";
 import { categoryFormSchema } from "@/features/categories/schema";
 import { verifySession } from "@/lib/verify-session";

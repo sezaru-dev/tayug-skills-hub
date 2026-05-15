@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { RenameSkillFormSchema } from "@/features/skills/schema";
 import { SkillRepository } from "@/features/skills/skill-repository";
 import { verifySession } from "@/lib/verify-session";

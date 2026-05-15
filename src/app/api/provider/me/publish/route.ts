@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic"
 import { ProfileRepository } from "@/features/profile/profile-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";

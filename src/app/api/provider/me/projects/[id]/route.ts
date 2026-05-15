@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { ProfileRepository } from "@/features/profile/profile-repository";
 import cloudinary from "@/lib/cloudinary";
 import { verifySession } from "@/lib/verify-session";
