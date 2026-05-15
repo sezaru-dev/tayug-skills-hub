@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic"
 import { CategoryRepository } from "@/features/categories/data/category-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
