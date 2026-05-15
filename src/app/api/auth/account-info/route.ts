@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { AccountRepository } from "@/features/account/account.repository";
 import { AdminAccountDetailsSchema } from "@/features/account/schema";
 import { verifySession } from "@/lib/verify-session";

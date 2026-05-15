@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic"
 import { AccountRepository } from "@/features/account/account.repository";
 import { DeleteAccountRouteSchema } from "@/features/account/schema";
 import { ProfileRepository } from "@/features/profile/profile-repository";

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { hashPassword } from "@/lib/auth-bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";

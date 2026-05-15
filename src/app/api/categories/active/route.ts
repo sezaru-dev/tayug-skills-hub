@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { CategoryRepository } from "@/features/categories/data/category-repository";
 import { NextResponse } from "next/server";
 

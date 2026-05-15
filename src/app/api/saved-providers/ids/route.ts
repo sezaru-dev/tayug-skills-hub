@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { SavedProviderRepository } from "@/features/saved-provider/saved-provider-repository";
 import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
