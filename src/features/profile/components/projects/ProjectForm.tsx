@@ -23,7 +23,6 @@ import {
 import ProjectImageDropzone from './ProjectImageDropzone'
 import ProjectSkillsCombobox from './ProjectSkillsCombobox'
 import { useGetUserSkills } from '../../queries/use-get-user-skills'
-import { SkillWithCategory } from '../skills/EditSkillsDialog'
 import { toast } from 'sonner'
 import { errorToast, successToast } from '@/components/utils/custom-toast'
 import { useRouter } from 'next/navigation'
@@ -31,7 +30,6 @@ import { useCreateProjectFlow } from '../../mutations/use-create-project-flow'
 
 const ProjectForm = () => {
   const { data: userSkills = [] } = useGetUserSkills()
-  const safeUserSkills = Array.isArray(userSkills) ? userSkills : []
   const router = useRouter()
   const projectFlow = useCreateProjectFlow()
 
