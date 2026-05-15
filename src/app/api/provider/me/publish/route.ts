@@ -5,7 +5,7 @@ import { Role } from "@/types/roles";
 import { NextResponse } from "next/server";
 
 // This route is for publishing the provider's profile, making it visible to users browsing for service providers.
-export async function PATCH (req: Request) {
+export async function PATCH () {
 
   //  Verify session
   const session = await verifySession([Role.PROVIDER])

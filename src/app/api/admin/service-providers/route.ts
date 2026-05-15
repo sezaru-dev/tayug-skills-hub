@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { verifySession } from "@/lib/verify-session"
 import { Role } from "@/types/roles"
 import { ProviderDiscoveryRepository } from "@/features/provider-discovery/provider-discovery.repository"
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
   try {
     //  Verify session
       const session = await verifySession([Role.ADMIN])

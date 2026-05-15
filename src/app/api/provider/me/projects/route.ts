@@ -4,7 +4,7 @@ import { verifySession } from "@/lib/verify-session";
 import { Role } from "@/types/roles";
 import { NextResponse } from "next/server";
 
-export async function GET(_req: Request) {
+export async function GET() {
   try {
     const session = await verifySession([Role.PROVIDER])
 
