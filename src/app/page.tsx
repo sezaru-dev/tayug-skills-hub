@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import CTASection from "@/components/sections/CTA";
 import Hero from "@/components/sections/Hero";
 import HowThePlatformWorks from "@/components/sections/HowThePlatformWorks";

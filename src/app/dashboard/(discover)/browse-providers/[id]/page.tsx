@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import React from "react";
 import PublicAboutSection from "@/features/profile/components/about/PublicAboutSection";
 import PublicContactSection from "@/features/profile/components/contact/PublicContactSection";

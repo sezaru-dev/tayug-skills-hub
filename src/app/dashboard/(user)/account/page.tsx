@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import LoadingSkeleton from "@/components/custom/LoadingSkeleton"
 import AccountDetailsSection from "@/features/account/components/account-details/AccountDetailsSection"
 import ChangePasswordSection from "@/features/account/components/change-password/ChangePasswordSection"

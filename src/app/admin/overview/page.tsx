@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import React from 'react'
 import { StatCard } from './StatCard'
 import { ProviderDiscoveryRepository } from '@/features/provider-discovery/provider-discovery.repository'

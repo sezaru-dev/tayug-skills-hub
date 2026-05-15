@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import SavedProvidersList from "@/features/saved-provider/components/SavedProviderList"
 import { SavedProvidersListSkeleton } from "@/features/saved-provider/components/SavedProvidersListSkeleton"
 import { verifySession } from "@/lib/verify-session"
