@@ -9,10 +9,18 @@ type DeleteProjectResponse = {
   deletedProjectId: string
 }
 
+type ProviderProject = {
+  id: string
+}
+
 export function useDeleteProject() {
   const queryClient = useQueryClient()
 
-  return useMutation<DeleteProjectResponse, Error, DeleteProjectInput>({
+  return useMutation<
+    DeleteProjectResponse,
+    Error,
+    DeleteProjectInput
+  >({
     mutationFn: async ({ projectId }) => {
       const res = await fetch(
         `/api/provider/me/projects/${projectId}`,
@@ -23,17 +31,20 @@ export function useDeleteProject() {
 
       if (!res.ok) {
         const error = await res.json().catch(() => null)
-        throw new Error(error?.error || "Failed to delete project")
+
+        throw new Error(
+          error?.error || "Failed to delete project"
+        )
       }
 
       return res.json()
     },
 
     onSuccess: (_, { projectId }) => {
-      queryClient.setQueryData(
+      queryClient.setQueryData<ProviderProject[]>(
         ["provider-projects", "me"],
-        (old: any[] | undefined) =>
-          old?.filter((p) => p.id !== projectId) ?? []
+        (old) =>
+          old?.filter((project) => project.id !== projectId) ?? []
       )
     },
   })

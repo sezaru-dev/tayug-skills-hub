@@ -40,7 +40,7 @@ const BrowseProviderSection = ({userId}:Props) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 min-h-min">
         {isLoading && <p>Loading...</p>}
 
-        {providers.map((provider: any) => (
+        {providers.map((provider) => (
           <ServiceProviderCardWithBookmark key={provider.id} userId={userId} {...provider} />
         ))}
       </div>

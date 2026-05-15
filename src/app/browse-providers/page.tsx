@@ -46,7 +46,7 @@ const BrowseProvidersPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 min-h-min">
           {isLoading && <p>Loading...</p>}
 
-          {providers.map((provider: any) => (
+          {providers.map((provider) => (
             <ServiceProviderCard key={provider.id} {...provider} />
           ))}
         </div>
