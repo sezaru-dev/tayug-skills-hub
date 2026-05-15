@@ -9,13 +9,13 @@ import {
   FieldError,
   FieldLabel
 } from '@/components/ui/field'
-import { ControllerRenderProps } from 'react-hook-form'
+import { ControllerRenderProps, FieldError as RHFFieldError } from 'react-hook-form'
 import { EditProjectFormInput, ProjectFormInput } from '../../schema'
 import { Button } from '@/components/ui/button'
 
 type Props = {
   field: ControllerRenderProps<ProjectFormInput, 'imageFile'> | ControllerRenderProps<EditProjectFormInput, 'imageFile'>
-  error?: any
+  error?: RHFFieldError
   maxSizeMB?: number
   initialImageUrl?: string | null
 }
