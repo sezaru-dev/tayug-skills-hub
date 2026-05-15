@@ -1,4 +1,5 @@
-import { ProfileType } from "@/features/provider/types";
+
+import { ProfileType } from "@/features/service-provider.types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 

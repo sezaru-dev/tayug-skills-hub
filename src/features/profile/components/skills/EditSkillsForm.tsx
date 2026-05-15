@@ -22,12 +22,7 @@ type EditSkillsFormProps = {
 }
 
 const EditSkillSForm = ({ skillsOption, currentValue, closeEditMode}: EditSkillsFormProps) => {
-  const {mutate, isPending} = useUpdateUserSkills()
-  
-
-  /* console.table(skillsOption) */
-  
-
+  const {mutate} = useUpdateUserSkills()
   
     const form = useForm<EditSkillsFormInput>({
       resolver: zodResolver(EditSkillsFormSchema),

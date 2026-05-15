@@ -1,7 +1,7 @@
 import { CategoryRepository } from "@/features/categories/data/category-repository";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET (_req: Request) {
+export async function GET (_req: NextRequest) {
   try {
 
     const activeCategories = await CategoryRepository.getAllActiveCategories();

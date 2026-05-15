@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { errorToast, successToast } from '@/components/utils/custom-toast'
-import { useRouter } from 'next/navigation'
 import ShowHidePasswordButton from '@/components/custom/ShowHidePasswordButton'
 import { useChangePassword } from '@/features/account/mutations/use-change-password'
 import { ChangePasswordInput, ChangePasswordSchema } from '../schema'
@@ -19,7 +18,7 @@ const ChangePasswordForm = () => {
     confirm: false,
   });
   const { mutate, isPending } = useChangePassword()
-  const router = useRouter()
+
 
   const form = useForm<ChangePasswordInput>({
     resolver: zodResolver(ChangePasswordSchema),

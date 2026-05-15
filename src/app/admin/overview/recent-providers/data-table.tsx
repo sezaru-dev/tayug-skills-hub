@@ -22,8 +22,6 @@ import {
 } from "@/components/ui/table"
 
 import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { DataTablePagination } from "@/components/custom/Pagination"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

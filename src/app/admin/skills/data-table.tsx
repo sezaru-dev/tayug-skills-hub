@@ -23,7 +23,6 @@ import {
 import { DataTablePagination } from "@/components/custom/Pagination"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { AddSkillDialog } from "@/features/skills/components/AddSkillDialog"
 
 interface DataTableProps<TData, TValue> {

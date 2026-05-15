@@ -1,6 +1,4 @@
-import { GetParameters } from "@/app/api/categories/route"
 import { useQuery } from "@tanstack/react-query"
-
 
 export function useGetActiveSkills() {
   return useQuery({

@@ -17,7 +17,6 @@ type ProfileAlertProps = {
 const ProfileAlert = ({
   isProfileComplete,
   isPublished,
-  onPublish,
 }: ProfileAlertProps) => {
   const { mutate, isPending } = usePublishProfile()
   const isReadyToPublish = isProfileComplete && !isPublished

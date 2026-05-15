@@ -11,7 +11,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-
 import {
   Table,
   TableBody,
@@ -20,11 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { DataTablePagination } from "@/components/custom/Pagination"
 import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { AddSkillDialog } from "@/features/skills/components/AddSkillDialog"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

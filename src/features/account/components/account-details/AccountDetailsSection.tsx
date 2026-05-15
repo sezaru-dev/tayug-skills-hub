@@ -2,9 +2,7 @@
 import React from 'react'
 import EditableForm from './EditableForm'
 import { unstable_noStore as noStore } from "next/cache"
-import { useGetProfileById } from '@/features/profile/queries/use-get-profile-by-id'
 import { ProfileRepository } from '@/features/profile/profile-repository'
-import { Role } from '@/types/roles'
 import { ProfileType } from '@/features/service-provider.types'
 
 type Props ={

@@ -10,7 +10,7 @@ type RenameCategoryDialogProps = {
   currentName: string
 }
 
-export default function RenameCategoryDialog({children, id, currentName}: RenameCategoryDialogProps) {
+export default function RenameCategoryDialog({id, currentName}: RenameCategoryDialogProps) {
   const [open, setOpen] = useState<boolean>(false)
 
   return (

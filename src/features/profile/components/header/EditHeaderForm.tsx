@@ -3,7 +3,6 @@
 import React from 'react'
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,

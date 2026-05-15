@@ -1,7 +1,5 @@
 import React from 'react'
 import { SectionCard } from '../SectionCard'
-import { Project } from '../../queries/use-get-projects-by-userid'
-import ProjectsSectionView from './ProjectsSectionView'
 import PublicProjectsView from './PublicProjectsView'
 
 export type PublicSkill = {

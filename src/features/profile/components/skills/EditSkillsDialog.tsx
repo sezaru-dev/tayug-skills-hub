@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React from 'react'
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import EditSkillsForm from './EditSkillsForm'
 
 export type SkillWithCategory = {
   id: string
@@ -28,24 +27,9 @@ export type EditSkillsDialogProps = {
   onOpenChange: (open: boolean) => void
 }
 
-const skillGroups = [
-  {
-    label: "Frontend",
-    items: ["React", "Next.js", "Vue", "Svelte"],
-  },
-  {
-    label: "Styling",
-    items: ["Tailwind CSS", "SCSS", "CSS Modules"],
-  },
-  {
-    label: "Backend",
-    items: ["Node.js", "Express", "PostgreSQL"],
-  },
-]
 
-const EditSkillsDialog = ({skillsOption, open, onOpenChange}: EditSkillsDialogProps) => {
-  /* const [open, setOpen] = useState<boolean>(false) */
 
+const EditSkillsDialog = ({open, onOpenChange}: EditSkillsDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

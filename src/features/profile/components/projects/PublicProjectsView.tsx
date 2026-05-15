@@ -1,5 +1,4 @@
 import React from 'react'
-import { Project } from '../../queries/use-get-projects-by-userid'
 import PublicProjectCard from './PublicProjectCard'
 import { PublicProject } from './PublicProjectSection'
 

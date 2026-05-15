@@ -1,19 +1,7 @@
 import { SignupForm } from "@/components/sign-up-form";
-
-/* export default function Page() {
-  return (
-    <div className="flex min-[calc(100svh-5rem)] w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <SignupForm />
-      </div>
-    </div>
-  )
-}
- */
-
-import { LoginForm } from "@/components/login-form"
 import { SquareLibrary } from "lucide-react"
 import Link from "next/link"
+
 export default function SignUpPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2 bg-gray-50">
@@ -32,30 +20,8 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-{/*       <div className="relative hidden bg-gray-900 lg:grid place-items-center">
-      <div className="space-y-6 max-w-md">
-        <h1 className="text-5xl text-white font-medium leading-normal">
-          Turn your <span className="text-blue-500">skills</span> into opportunities
-        </h1>
 
-        <p className="text-gray-300 text-sm leading-relaxed">
-          Create your profile, showcase your work, and connect with people who need your expertise.
-        </p>
-
-        <ul className="space-y-2 text-sm text-gray-400">
-          <li>• Build your professional profile</li>
-          <li>• Showcase your projects and skills</li>
-          <li>• Get discovered by local clients</li>
-        </ul>
-      </div>
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        />
-      </div> */}
       <div className="relative hidden lg:grid place-items-center overflow-hidden bg-[#070A0F]">
-
 
         {/* Cold overlay system */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#05070c] via-[#070a12]/80 to-[#05070c]" />

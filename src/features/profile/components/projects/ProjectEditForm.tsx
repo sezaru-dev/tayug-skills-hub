@@ -3,7 +3,7 @@
 import React from 'react'
 import {
   Field,
-  FieldDescription,
+
   FieldError,
   FieldGroup,
   FieldLabel
@@ -19,18 +19,14 @@ import {
   EditProjectFormInput,
   EditProjectFormSchema,
   MAXDESCRIPTIONLENGTH,
-  ProjectFormInput,
-  ProjectFormSchema
 } from '../../schema'
 
 import ProjectImageDropzone from './ProjectImageDropzone'
 import ProjectSkillsCombobox from './ProjectSkillsCombobox'
 import { useGetUserSkills } from '../../queries/use-get-user-skills'
-import { SkillWithCategory } from '../skills/EditSkillsDialog'
 import { toast } from 'sonner'
 import { errorToast, successToast } from '@/components/utils/custom-toast'
 import { useRouter } from 'next/navigation'
-import { useCreateProjectFlow } from '../../mutations/use-create-project-flow'
 import { Project } from '../../queries/use-get-project-by-projectid-and-id'
 import { useEditProjectFlow } from '../../mutations/use-edit-project-flow'
 
@@ -40,8 +36,6 @@ type ProjectEditFormProps = {
 
 const ProjectEditForm = ({ initialData }: ProjectEditFormProps) => {
   const { data: userSkills = [] } = useGetUserSkills()
-  const safeUserSkills = Array.isArray(userSkills) ? userSkills : []
-  const currentValue = safeUserSkills.map((skill:SkillWithCategory) => skill.id)
   const router = useRouter()
   const editprojectFlow = useEditProjectFlow()
 

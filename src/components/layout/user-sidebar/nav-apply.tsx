@@ -1,6 +1,6 @@
 // NavApplyProvider.tsx
 import Link from "next/link"
-import { Briefcase, UserPlus } from "lucide-react"
+import { Briefcase } from "lucide-react"
 import {
   SidebarGroup,
   SidebarGroupLabel,

@@ -69,7 +69,7 @@ async getSavedProviders(userId: string) {
   return saved.map((item) => {
     const provider = item.provider
 
-    const { providerSkills, profile, ...rest } = provider
+    const { providerSkills, profile } = provider
 
     return {
       id: provider.id,

@@ -10,7 +10,6 @@ import { PublicProject } from './PublicProjectSection'
 
 
 const PublicProjectCard = ({
-  id,
   title,
   imageUrl,
   description,

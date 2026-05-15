@@ -3,7 +3,6 @@
 import React from 'react'
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel
@@ -33,7 +32,6 @@ import { useCreateProjectFlow } from '../../mutations/use-create-project-flow'
 const ProjectForm = () => {
   const { data: userSkills = [] } = useGetUserSkills()
   const safeUserSkills = Array.isArray(userSkills) ? userSkills : []
-  const currentValue = safeUserSkills.map((skill:SkillWithCategory) => skill.id)
   const router = useRouter()
   const projectFlow = useCreateProjectFlow()
 

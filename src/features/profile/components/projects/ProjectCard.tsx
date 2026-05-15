@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { EllipsisVertical } from 'lucide-react'
 import MenuButton from './MenuButton'
 import Image from 'next/image'
 import ProjectPreviewModal from './ProjectPreviewModal'

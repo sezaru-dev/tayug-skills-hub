@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -28,7 +28,7 @@ export const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({
   barangay,
   skills,
 }) => {
-  const [bookmarked, setBookmarked] = useState(false)
+
 
   const initials = fullname
     .split(" ")

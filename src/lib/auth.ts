@@ -2,7 +2,6 @@ import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Role } from "@/types/roles";
 import { loginWithCredentials } from "@/features/auth/login-with-credentials";
-import { UserRepository } from "@/server/repositories/user.repository";
 
 export const authOptions: NextAuthOptions = {
   providers: [

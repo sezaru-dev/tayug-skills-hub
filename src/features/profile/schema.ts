@@ -1,4 +1,4 @@
-import z, { file } from "zod";
+import z from "zod";
 import { BARANGAYS } from "./constant";
 
 export const MAXBIOLENGTH = 600;
