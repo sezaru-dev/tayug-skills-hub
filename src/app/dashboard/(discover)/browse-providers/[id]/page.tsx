@@ -35,7 +35,7 @@ export default async function PublicProfilePage({params}: {params: { id: string 
   }))
   
   return (
-    <main className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12 space-y-8 sm:space-y-10 w-full">
+    <main className="max-w-5xl mx-auto mt-12 px-4 sm:px-6 py-10 sm:py-12 space-y-8 sm:space-y-10 w-full">
       <PublicProfileHeader profile={profileData} />
       <PublicAboutSection about={user.profile?.about ?? ""} />
       <PublicSkillsSection data={skills}/>
