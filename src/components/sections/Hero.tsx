@@ -66,7 +66,8 @@ export default function Hero({ activeSkills }: ActiveSkills) {
 
         {/* SKILLS (separated visual section) */}
         <ul className="flex flex-wrap items-center justify-center gap-3 mt-14 max-w-3xl">
-          {randomSkills.map((skill) => {
+
+          {randomSkills.slice(0,5).map((skill) => {
             const params = new URLSearchParams()
             params.set("search", skill.name)
 
@@ -82,7 +83,7 @@ export default function Hero({ activeSkills }: ActiveSkills) {
                     bg-white/10
                     border border-white/10
                     backdrop-blur-md
-                    text-sm text-white
+                    text-xs md:text-sm text-white
                     hover:bg-white/20
                     transition
                   "
