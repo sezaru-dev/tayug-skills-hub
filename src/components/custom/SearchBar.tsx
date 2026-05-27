@@ -22,7 +22,7 @@ const SearchBarSuggestions = ({
 
   return (
     <div className="absolute top-full left-0 mt-2 w-full rounded-xl border bg-black/10 backdrop-blur-md shadow-lg overflow-hidden z-50">
-      <ul className="max-h-56 overflow-y-auto">
+      <ul className="max-h-36 md:max-h-56 overflow-y-auto">
         {filtered.map((skill) => (
           <li
             key={skill.id}
@@ -92,18 +92,18 @@ export default function SearchBar({
             setOpen(true)
           }}
           onFocus={() => setOpen(true)}
-          className="h-full border-0 bg-transparent focus-visible:ring-0 px-4 text-base text-white"
+          className="h-full border-0 bg-transparent focus-visible:ring-0 px-4 text-sm md:text-base text-white"
         />
 
         {query.trim() ? (
           <Link
             href={searchHref}
-            className="flex items-center justify-center h-full px-6 bg-blue-600 hover:bg-blue-700 text-white"
+            className="text-sm md:text-base flex items-center justify-center h-full px-4 md:px-6 bg-blue-600 hover:bg-blue-700 text-white"
           >
             Search
           </Link>
         ) : (
-          <span className="flex items-center justify-center h-full px-6 bg-blue-600/50 text-white cursor-not-allowed">
+          <span className="text-sm md:text-base flex items-center justify-center h-full px-4 md:px-6 bg-blue-600/50 text-white cursor-not-allowed">
             Search
           </span>
         )}
